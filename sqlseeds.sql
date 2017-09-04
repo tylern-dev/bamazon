@@ -3,11 +3,12 @@ create database bamazon;
 use bamazon;
 
 create table products(
-    item_id auto_increment not null,
+    item_id int auto_increment not null,
     product_name varchar(30) not null,
     department_name varchar(30) not null,
-    price decimal(4,2) not null,
-    stock_quantity int not null
+    price decimal(6,2) not null,
+    stock_quantity int not null,
+    key(item_id)
 );
 
 insert into products(product_name, department_name, price, stock_quantity) VALUES ('ipad', 'electronics', 399.99,10),
