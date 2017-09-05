@@ -17,7 +17,8 @@
     var reduceQty;
     var qtyCheck;
     var price;
-        
+    
+    /* shows all inventory before allowing customer to select from it */
     connection.query(
         'select * from products',
         function(err, results, fields){
@@ -59,8 +60,9 @@
     function itemQuery(){
         connection.query(
             'select stock_quantity, price from products where item_id = ?', [productId], function(err,results){
-                //resulting amt from db
+                //resulting qty from db
                 qtyCheck = results[0].stock_quantity;
+                //stores price from query to be used with the total calc
                 price = results[0].price 
                 if(qtyCheck < reduceQty){
                     console.log('Insufficient Quantity!');
