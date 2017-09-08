@@ -8,7 +8,7 @@
         host: 'localhost',
         port: 3306,
         user: 'root',
-        password: 'root', //this may need to changed depending on what computer i'm using
+        password: '', //this may need to changed depending on what computer i'm using. MAMP need 'root' for pw
         database: 'bamazon'
     });
 
@@ -27,7 +27,7 @@
             connection.query(
                 'insert into products (product_name, department_name, price, stock_quantity) VALUES(?,?,?,?)',[this.prodName, this.deptName,this.price, this.stockQuantity], function(err){
                     if(err) throw err;
-                    console.log(this.prodName + 'Added to products!')
+                    console.log('Added to products!')
                 }
             )
             connection.end();

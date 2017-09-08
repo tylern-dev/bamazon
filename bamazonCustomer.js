@@ -9,7 +9,7 @@
         host: 'localhost',
         port: 3306,
         user: 'root',
-        password: 'root', //this may need to changed depending on what computer i'm using
+        password: '', //this may need to changed depending on what computer i'm using
         database: 'bamazon'
     });
     
@@ -82,13 +82,23 @@
                 if(err) throw err;
             }
         )
-        connection.end();
     }
 
     /* CALCULATE THE TOTAL AMOUNT AND DISPLAYS IT */
     function completeOrder(price, reduceQty){
         var total = price * reduceQty
-        console.log('Order Complete! Your total is: $'+parseFloat(total))
+        updateProductSales(total);
+        console.log('Order Complete! Your total is: $' + parseFloat(total))
+    }
+
+    /* Update the product sales for each product bought */
+    function updateProductSales(total){
+        connection.query(
+            'update products set product_sales = product_sales + ? where item_id = ?', [total, productId], function(err,results){
+                if(err) throw err;
+            }
+        )
+        connection.end();
     }
 
     
